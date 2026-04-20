@@ -1,0 +1,12 @@
+[project]
+name = "information-security"
+version = "0.1.0"
+description = "Add your description here"
+requires-python = ">=3.11"
+dependencies = [
+    "numpy",
+    "gradio",
+    "pytest",
+    "cryptography>=46.0.6",
+    "pytest-cov>=7.1.0",
+]
