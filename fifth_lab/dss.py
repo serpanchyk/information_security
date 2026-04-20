@@ -2,6 +2,7 @@ from cryptography.hazmat.primitives.asymmetric import dsa
 from cryptography.hazmat.primitives import hashes, serialization
 from cryptography.hazmat.primitives.asymmetric.utils import Prehashed
 from cryptography.exceptions import InvalidSignature
+from second_lab.md5 import get_md5
 
 
 class DSSManager:
@@ -36,10 +37,10 @@ class DSSManager:
         self.public_key = serialization.load_pem_public_key(pem_data)
 
     def _hash_data(self, data: bytes):
-        chosen_hash = hashes.SHA256()
-        hasher = hashes.Hash(chosen_hash)
-        hasher.update(data)
-        return hasher.finalize(), chosen_hash
+        digest_hex = get_md5(data)
+        digest = bytes.fromhex(digest_hex)
+        chosen_hash = hashes.MD5()
+        return digest, chosen_hash
 
     def sign(self, data: bytes) -> str:
         if not self.private_key:
