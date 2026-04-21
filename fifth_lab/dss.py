@@ -37,10 +37,10 @@ class DSSManager:
         self.public_key = serialization.load_pem_public_key(pem_data)
 
     def _hash_data(self, data: bytes):
-        digest_hex = get_md5(data)
-        digest = bytes.fromhex(digest_hex)
-        chosen_hash = hashes.MD5()
-        return digest, chosen_hash
+        chosen_hash = hashes.SHA256()
+        hasher = hashes.Hash(chosen_hash)
+        hasher.update(data)
+        return hasher.finalize(), chosen_hash
 
     def sign(self, data: bytes) -> str:
         if not self.private_key:
