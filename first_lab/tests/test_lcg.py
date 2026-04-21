@@ -21,7 +21,7 @@ class TestLCG(unittest.TestCase):
 
         error_msg = f"Estimated pi ({estimated_pi:.5f}) deviated from math.pi ({actual_pi:.5f}) by more than {tolerance}"
 
-        self.assertTrue(abs(estimated_pi - actual_pi) < tolerance, error_msg)
+        self.assertLess(abs(estimated_pi - actual_pi), tolerance, error_msg)
 
     def test_invalid_parameters_raise_error(self):
         with self.assertRaises(ValueError):

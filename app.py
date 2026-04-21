@@ -11,6 +11,9 @@ def create_ui():
         text_size="lg",
     )
 
+    lit = "### Results"
+    lit_2 = "Enter string here..."
+
     with gr.Blocks(theme=theme, title="Cryptography Labs") as app:
         gr.Markdown("# Cryptography & Security Labs")
         gr.Markdown("Select a laboratory assignment from the tabs below.")
@@ -41,7 +44,7 @@ def create_ui():
                         in_size = gr.Number(label="Sequence Size", value=100000, precision=0)
                         btn = gr.Button("Analyze", variant="primary")
                     with gr.Column():
-                        gr.Markdown("### Results")
+                        gr.Markdown(lit)
                         out_status = gr.Textbox(label="Status")
                         out_period = gr.Textbox(label="Calculated Period (T)")
                         with gr.Row():
@@ -61,14 +64,14 @@ def create_ui():
                 with gr.Row():
                     with gr.Column():
                         gr.Markdown("### Input Data")
-                        in_text_md5 = gr.Textbox(label="Text to hash", placeholder="Enter string here...")
+                        in_text_md5 = gr.Textbox(label="Text to hash", placeholder=lit_2)
                         gr.Markdown("**OR**")
                         in_file_md5 = gr.File(label="Upload File to hash", type="filepath")
                         gr.Markdown("### Verification")
                         in_expected_hash = gr.Textbox(label="Expected MD5 Hash (Hex)", placeholder="Paste hex hash to verify integrity...")
                         btn_md5 = gr.Button("Calculate Hash & Verify", variant="primary")
                     with gr.Column():
-                        gr.Markdown("### Results")
+                        gr.Markdown(lit)
                         out_target = gr.Textbox(label="Processed Target")
                         out_hash = gr.Textbox(label="MD5 Hash (Hex)")
                         out_integrity = gr.Textbox(label="Integrity Status")
@@ -95,7 +98,7 @@ def create_ui():
                         in_mode_rc5 = gr.Radio(["Encrypt", "Decrypt"], label="Operation", value="Encrypt")
                         btn_rc5 = gr.Button("Execute", variant="primary")
                     with gr.Column():
-                        gr.Markdown("### Results")
+                        gr.Markdown(lit)
                         out_status_rc5 = gr.Textbox(label="Status")
                         out_result_rc5 = gr.Textbox(label="Output Data", lines=4)
                         out_file_rc5 = gr.File(label="Download Result")
@@ -164,7 +167,7 @@ def create_ui():
                 with gr.Row():
                     with gr.Column():
                         gr.Markdown("### 2. Sign Data")
-                        sign_text = gr.Textbox(label="Text to sign", placeholder="Enter string here...")
+                        sign_text = gr.Textbox(label="Text to sign", placeholder=lit_2)
                         sign_file = gr.File(label="OR Upload File to sign", type="filepath")
                         sign_priv_key = gr.File(label="Private Key (PEM) required", type="filepath")
                         btn_sign = gr.Button("Sign Data", variant="primary")
@@ -182,7 +185,7 @@ def create_ui():
                 with gr.Row():
                     with gr.Column():
                         gr.Markdown("### 3. Verify Data")
-                        verify_text = gr.Textbox(label="Text to verify", placeholder="Enter string here...")
+                        verify_text = gr.Textbox(label="Text to verify", placeholder=lit_2)
                         verify_file = gr.File(label="OR Upload File to verify", type="filepath")
                         verify_pub_key = gr.File(label="Public Key (PEM) required", type="filepath")
                         verify_sig_hex = gr.Textbox(label="Signature (Hex)")

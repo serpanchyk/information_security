@@ -41,6 +41,7 @@ def test_verify_failure_with_corrupt_signature(dss_manager):
     data = b"Test data"
     signature_hex = dss_manager.sign(data)
 
+    # Змінюємо один символ у hex-рядку підпису
     corrupt_signature = list(signature_hex)
     corrupt_signature[0] = '0' if corrupt_signature[0] != '0' else '1'
     corrupt_signature = "".join(corrupt_signature)
